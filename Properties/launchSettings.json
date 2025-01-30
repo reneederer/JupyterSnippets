@@ -2,7 +2,7 @@
   "profiles": {
     "JupyterSnippets": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\rene\\source\\repos\\JupyterSnippets\\py.ipynb C:\\Users\\rene\\AppData\\Roaming\\Code\\User\\snippets\\python.json"
+      "commandLineArgs": "C:\\Users\\rene\\source\\repos\\JupyterSnippets\\python.ipynb C:\\Users\\rene\\AppData\\Roaming\\Code\\User\\snippets\\python.json"
     }
   }
 }

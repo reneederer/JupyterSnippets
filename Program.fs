@@ -36,7 +36,10 @@ let main args =
                     prefix,
                     {
                         body =
-                            (x.source[1..] |> List.map (fun x -> Regex.Replace(x.Trim(), @"ö(\d+)_([^ö]*)ö", "$" + "{$1:$2}")))
+                            (x.source[1..]
+                             |> List.map
+                                (fun x ->
+                                    Regex.Replace(x.Trim(), @"ö(\d+)_([^ö]*)ö", "$" + "{$1:$2}")))
                             @ ["$0"]
                         prefix = prefix
                         description = ""
