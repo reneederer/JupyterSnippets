@@ -31,19 +31,25 @@ let main args =
     let snippets =
         List.fold
             (fun (state : Snippets) x ->
-                let prefix = x.source[0].TrimStart([|'#'; ' '|]).Trim()
-                state.Add(
-                    prefix,
-                    {
-                        body =
-                            (x.source[1..]
-                             |> List.map
-                                (fun x ->
-                                    Regex.Replace(x.Trim(), @"ö(\d+)_([^ö]*)ö", "$" + "{$1:$2}")))
-                            @ ["$0"]
-                        prefix = prefix
-                        description = ""
-                    })
+                try
+                    let prefix = x.source[0].TrimStart([|'#'; ' '|]).Trim()
+                    state.Add(
+                        prefix,
+                        {
+                            body =
+                                (x.source[1..]
+                                 |> List.map
+                                    (fun x ->
+                                        Regex.Replace(x.Trim(), @"ö(\d+)_([^ö]*)ö", "$" + "{$1:$2}")))
+                                @ ["$0"]
+                            prefix = prefix
+                            description = ""
+                        })
+                with
+                | e ->
+                    if not (x.source |> List.forall (fun s -> s.Trim() = "")) then
+                        printfn $"{e}"
+                    state
             )
             Map.empty
             nb.cells
